@@ -53,3 +53,10 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
+# Correlation heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(df_filtered[['total_cases', 'total_deaths', 'total_vaccinations', 'death_rate']].corr(), annot=True, cmap='coolwarm')
+plt.title("Correlation Heatmap")
+plt.tight_layout()
+plt.show()
