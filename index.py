@@ -27,3 +27,16 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
+# Plot total deaths over time
+plt.figure(figsize=(12, 6))
+for country in countries:
+    subset = df_filtered[df_filtered['location'] == country]
+    plt.plot(subset['date'], subset['total_deaths'], label=country)
+plt.title("Total COVID-19 Deaths Over Time")
+plt.xlabel("Date")
+plt.ylabel("Total Deaths")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
