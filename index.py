@@ -2,17 +2,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# --------------------------------
 # 1. Load Data
-# --------------------------------
 def load_data(filepath):
     df = pd.read_csv(filepath)
     df['date'] = pd.to_datetime(df['date'])
     return df
 
-# --------------------------------
 # 2. Clean Data
-# --------------------------------
 def clean_data(df, countries, critical_columns):
     df = df[df['location'].isin(countries)]
     df = df.dropna(subset=['date'] + critical_columns)
@@ -21,9 +17,7 @@ def clean_data(df, countries, critical_columns):
     df['death_rate'] = df['total_deaths'] / df['total_cases']
     return df
 
-# --------------------------------
 # 3. Line Plot Function
-# --------------------------------
 def plot_line(df, countries, y_column, title, ylabel):
     plt.figure(figsize=(12, 6))
     for country in countries:
@@ -37,9 +31,7 @@ def plot_line(df, countries, y_column, title, ylabel):
     plt.tight_layout()
     plt.show()
 
-# --------------------------------
 # 4. Bar Chart for Top Countries by Cases
-# --------------------------------
 def plot_top_10_countries_by_cases(df):
     latest_df = df.sort_values('date').groupby('location').tail(1)
     latest_df = latest_df[latest_df['continent'].notna()]  # filter continents/aggregates
@@ -54,9 +46,7 @@ def plot_top_10_countries_by_cases(df):
     plt.tight_layout()
     plt.show()
 
-# --------------------------------
 # 5. Correlation Heatmap
-# --------------------------------
 def plot_correlation_heatmap(df):
     plt.figure(figsize=(8, 6))
     sns.heatmap(df[['total_cases', 'total_deaths', 'total_vaccinations', 'death_rate']].corr(),
@@ -65,9 +55,7 @@ def plot_correlation_heatmap(df):
     plt.tight_layout()
     plt.show()
 
-# --------------------------------
 # 🚀 Run Workflow
-# --------------------------------
 # Step 1: Load
 df = load_data('owid-covid-data.csv')
 
