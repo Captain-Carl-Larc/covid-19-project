@@ -14,3 +14,16 @@ df_filtered[numeric_cols] = df_filtered[numeric_cols].interpolate()
 
 # Add death rate column
 df_filtered['death_rate'] = df_filtered['total_deaths'] / df_filtered['total_cases']
+
+# Plot total cases over time
+plt.figure(figsize=(12, 6))
+for country in countries:
+    subset = df_filtered[df_filtered['location'] == country]
+    plt.plot(subset['date'], subset['total_cases'], label=country)
+plt.title("Total COVID-19 Cases Over Time")
+plt.xlabel("Date")
+plt.ylabel("Total Cases")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
