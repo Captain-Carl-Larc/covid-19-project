@@ -40,3 +40,16 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
+# Plot daily new cases
+plt.figure(figsize=(12, 6))
+for country in countries:
+    subset = df_filtered[df_filtered['location'] == country]
+    plt.plot(subset['date'], subset['new_cases'], label=country)
+plt.title("Daily New COVID-19 Cases")
+plt.xlabel("Date")
+plt.ylabel("New Cases")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
